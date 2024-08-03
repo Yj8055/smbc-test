@@ -4,7 +4,9 @@ metadata:
   name: openshift-cert-manager-operator
   namespace: cp4i-apic
   labels:
-    backup.integration.ibm.com/component: subscription        
+    backup.integration.ibm.com/component: subscription   
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"      
 spec:
   channel: stable-v1
   installPlanApproval: Automatic

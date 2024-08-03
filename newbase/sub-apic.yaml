@@ -4,7 +4,9 @@ metadata:
   name: ibm-apiconnect
   namespace: cp4i-apic
   labels:
-    backup.integration.ibm.com/component: subscription        
+    backup.integration.ibm.com/component: subscription   
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"      
 spec:
   channel: v5.2-sc2
   installPlanApproval: Automatic

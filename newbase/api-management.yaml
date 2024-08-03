@@ -3,6 +3,8 @@ apiVersion: apiconnect.ibm.com/v1beta1
 metadata:
   name: api-management
   namespace: cp4i-apic
+  annotations:
+    argocd.argoproj.io/sync-wave: "7" 
 spec:
   license:
     accept: true
