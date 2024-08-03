@@ -5,4 +5,6 @@ resources:
   - sub-cert-manager.yaml
   - sub-foundational.yaml
   - platform-ui.yaml
+  - api-manager-certs.yaml
+  - api-manager.yaml
 namespace: apic-test

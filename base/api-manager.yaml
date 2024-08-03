@@ -1,0 +1,54 @@
+apiVersion: management.apiconnect.ibm.com/v1beta1
+kind: ManagementCluster
+metadata:
+  name: api-manager
+  namespace: apic-test
+  annotations:
+    apiconnect-operator/cp4i: "false"
+    apiconnect-operator/backups-not-configured: "true"
+spec:
+  version: 10.0.8.0
+  profile: n1xc2.m16
+  portal:
+    admin:
+      secretName: portal-admin-client
+  analytics:
+    ingestion:
+      secretName: analytics-ingestion-client
+  gateway:
+    client:
+      secretName: gateway-client-client
+  cloudManagerEndpoint:
+    annotations:
+      cert-manager.io/issuer: ingress-issuer
+    hosts:
+    - name: admin.apps.o1-773273.cp.fyre.ibm.com
+      secretName: cm-endpoint
+  apiManagerEndpoint:
+    annotations:
+      cert-manager.io/issuer: ingress-issuer
+    hosts:
+    - name: manager.apps.o1-773273.cp.fyre.ibm.com
+      secretName: apim-endpoint
+  platformAPIEndpoint:
+    annotations:
+      cert-manager.io/issuer: ingress-issuer
+    hosts:
+    - name: api.apps.o1-773273.cp.fyre.ibm.com
+      secretName: api-endpoint
+  consumerAPIEndpoint:
+    annotations:
+      cert-manager.io/issuer: ingress-issuer
+    hosts:
+    - name: consumer.apps.o1-773273.cp.fyre.ibm.com
+      secretName: consumer-endpoint
+  databaseVolumeClaimTemplate:
+    storageClassName: rook-ceph-block
+  microServiceSecurity: certManager
+  certManagerIssuer:
+    name: selfsigning-issuer
+    kind: Issuer
+  license:
+    accept: true
+    use: nonproduction
+    license: L-DZZQ-MGVN8V
