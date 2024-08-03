@@ -1,0 +1,11 @@
+bases:
+  - ../../base
+
+namespace: 
+  - apic-test
+
+resources:
+  # - 
+
+patches:
+  - target

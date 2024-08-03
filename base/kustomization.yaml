@@ -1,0 +1,4 @@
+resources:
+  - abc.yaml
+
+namespace: apic-test
