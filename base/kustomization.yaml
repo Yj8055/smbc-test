@@ -1,4 +1,4 @@
 resources:
-  - abc.yaml
+  - sub-platform-navigator.yaml
 
 namespace: apic-test
