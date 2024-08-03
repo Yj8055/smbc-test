@@ -1,29 +1,4 @@
-apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: selfsigning-issuer
-  namespace: apic-test
-  labels: {
-    app.kubernetes.io/instance: "api-manager",
-    app.kubernetes.io/managed-by: "ibm-apiconnect",
-    app.kubernetes.io/name: "selfsigning-issuer"
-  }
-spec:
-  selfSigned: {}
----
-apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: ingress-issuer
-  namespace: apic-test
-  labels: {
-    app.kubernetes.io/instance: "api-manager",
-    app.kubernetes.io/managed-by: "ibm-apiconnect",
-    app.kubernetes.io/name: "ingress-issuer"
-  }
-spec:
-  ca:
-    secretName: ingress-ca
+
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
