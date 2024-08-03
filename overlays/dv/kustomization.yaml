@@ -1,9 +1,8 @@
 bases:
   - ../../base
 
-namespace: 
-  - apic-test
+namespace: apic-test
 
-resources:
+#resources:
   # - 
 #patches:
