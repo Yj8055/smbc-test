@@ -1,0 +1,13 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: ibm-integration-platform-navigator
+  namespace: cp4i-apic
+  labels:
+    backup.integration.ibm.com/component: subscription        
+spec:
+  channel: v7.3-sc2
+  installPlanApproval: Automatic
+  name: ibm-integration-platform-navigator
+  source: ibm-operator-catalog
+  sourceNamespace: openshift-marketplace
