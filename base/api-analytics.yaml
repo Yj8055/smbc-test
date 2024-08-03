@@ -1,0 +1,32 @@
+apiVersion: analytics.apiconnect.ibm.com/v1beta1
+kind: AnalyticsCluster
+metadata:
+  name: api-analytics
+  namespace: apic-test
+  annotations:
+    apiconnect-operator/cp4i: "false"
+spec:
+  version: 10.0.8.0
+  license:
+    accept: true
+    use: nonproduction
+    license: L-DZZQ-MGVN8V
+  profile: n1xc2.m16
+  microServiceSecurity: certManager
+  certManagerIssuer:
+    name: selfsigning-issuer
+    kind: Issuer
+  ingestion:
+    endpoint:
+      annotations:
+        cert-manager.io/issuer: ingress-issuer
+      hosts: 
+      - name: ai.apps.o1-773273.cp.fyre.ibm.com
+        secretName: analytics-ai-endpoint
+    clientSubjectDN: CN=analytics-ingestion-client,O=cert-manager
+  storage:
+    type: shared
+    shared:
+      volumeClaimTemplate:
+        storageClassName: rook-ceph-block
+        volumeSize: 50Gi
