@@ -4,5 +4,5 @@ resources:
   - sub-datapower.yaml
   - sub-cert-manager.yaml
   - sub-foundational.yaml
-
+  - platform-ui.yaml
 namespace: apic-test
