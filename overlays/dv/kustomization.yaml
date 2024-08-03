@@ -3,6 +3,6 @@ bases:
 
 namespace: apic-test
 
-#resources:
-  # - 
+resources:
+   - ../../base
 #patches:
