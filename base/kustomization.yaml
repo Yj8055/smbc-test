@@ -7,4 +7,5 @@ resources:
   - platform-ui.yaml
   - api-manager-certs.yaml
   - api-manager.yaml
+  - api-analytics.yaml
 namespace: apic-test
