@@ -1,0 +1,57 @@
+apiVersion: portal.apiconnect.ibm.com/v1beta1
+kind: PortalCluster
+metadata:
+  name: api-portal
+  namespace: apic-test
+  annotations:
+    apiconnect-operator/cp4i: "false"
+spec:
+  version: 10.0.8.0
+  profile: n1xc2.m8
+  mgmtPlatformEndpointCASecret:
+    secretName: ingress-ca
+  mgmtConsumerEndpointCASecret:
+    secretName: ingress-ca
+  mgmtPlatformEndpointSvcCASecret:
+    secretName: api-manager-ca
+  mgmtConsumerEndpointSvcCASecret:
+    secretName: api-manager-ca
+  portalAdminEndpoint:
+    annotations:
+      cert-manager.io/issuer: ingress-issuer
+    hosts:
+    - name: api.portal.apps.o1-773273.cp.fyre.ibm.com
+      secretName: portal-admin
+  portalUIEndpoint:
+    annotations:
+      cert-manager.io/issuer: ingress-issuer
+    hosts:
+    - name: portal.apps.o1-773273.cp.fyre.ibm.com
+      secretName: portal-web
+  databaseVolumeClaimTemplate:
+    storageClassName: rook-ceph-block
+    volumeSize: 15Gi
+  databaseLogsVolumeClaimTemplate:
+    storageClassName: rook-ceph-block
+    volumeSize: 6Gi
+  webVolumeClaimTemplate:
+    storageClassName: rook-ceph-block
+    volumeSize: 8Gi
+  backupVolumeClaimTemplate:
+    storageClassName: rook-ceph-block
+    volumeSize: 15Gi
+  adminVolumeClaimTemplate:
+    storageClassName: rook-ceph-block
+    volumeSize: 6Gi
+  certVolumeClaimTemplate:
+    storageClassName: rook-ceph-block
+    volumeSize: 4Gi
+  adminClientSubjectDN: CN=portal-admin-client,O=cert-manager
+  microServiceSecurity: certManager
+  certManagerIssuer:
+    name: selfsigning-issuer
+    kind: Issuer
+  license:
+    accept: true
+    use: nonproduction
+    license: L-DZZQ-MGVN8V

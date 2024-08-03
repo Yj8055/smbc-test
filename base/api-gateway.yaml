@@ -1,0 +1,44 @@
+apiVersion: gateway.apiconnect.ibm.com/v1beta1
+kind: GatewayCluster
+metadata:
+  name: api-gateway
+  namespace: apic-test
+  nnotations:
+    apiconnect-operator/cp4i: "false"
+spec:
+  version: 10.0.8.0
+  profile: n1xc1.m8
+  mtlsValidateClient: true
+  apicGatewayServiceV5CompatibilityMode: false
+  mgmtPlatformEndpointCASecret:
+    secretName: ingress-ca
+  mgmtPlatformEndpointSvcCASecret:
+    secretName: api-manager-ca
+  gatewayEndpoint:
+    annotations:
+      cert-manager.io/issuer: ingress-issuer
+    hosts:
+    - name: rgw.apps.o1-773273.cp.fyre.ibm.com
+      secretName: gwv6-endpoint
+  gatewayManagerEndpoint:
+    annotations:
+      cert-manager.io/issuer: ingress-issuer
+    hosts:
+    - name: rgwd.apps.o1-773273.cp.fyre.ibm.com
+      secretName: gwv6-manager-endpoint
+  apicGatewayServiceTLS:
+    secretName: gateway-service
+  apicGatewayPeeringTLS:
+    secretName: gateway-peering
+  datapowerLogLevel: 3
+  license:
+    accept: true
+    use: nonproduction
+    license: L-DZZQ-MGVN8V
+  tokenManagementService:
+    enabled: true
+    storage:
+      storageClassName: rook-ceph-block
+      volumeSize: 30Gi
+  adminUser:
+    secretName: admin-secret
