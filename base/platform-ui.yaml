@@ -1,7 +1,7 @@
 apiVersion: integration.ibm.com/v1beta1
 kind: PlatformNavigator
 metadata:
-  name: integration-quickstart
+  name: platformui-apic
   namespace: apic-test
   labels:
     backup.integration.ibm.com/component: platformnavigator        
