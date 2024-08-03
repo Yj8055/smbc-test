@@ -1,5 +1,4 @@
 resources:
-  - namespace.yaml
   - sub-platform-navigator.yaml
   - sub-cert-manager.yaml
   - sub-foundational.yaml
