@@ -1,4 +1,8 @@
 resources:
   - sub-platform-navigator.yaml
+  - sub-apic.yaml
+  - sub-datapower.yaml
+  - sub-cert-manager.yaml
+  - sub-foundational.yaml
 
 namespace: apic-test
