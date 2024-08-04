@@ -10,6 +10,28 @@ metadata:
   name: smbc-apic-management
   namespace: cp4i-apic
 spec:
+  analytics:
+    name: api-analytics
+    version: 10.0.8.0
+    profile: n1xc2.m16
+    microServiceSecurity: certManager
+    certManagerIssuer:
+      name: selfsigning-issuer
+      kind: Issuer
+    ingestion:
+      endpoint:
+        annotations:
+          cert-manager.io/issuer: ingress-issuer
+        hosts:
+          - name: ai.apps.o1-773537.cp.fyre.ibm.com
+            secretName: analytics-ai-endpoint
+      clientSubjectDN: CN=analytics-ingestion-client,O=cert-manager
+    storage:
+      type: shared
+      shared:
+        volumeClaimTemplate:
+          storageClassName: rook-ceph-block
+          volumeSize: 50Gi
   license:
     accept: true
     license: L-DZZQ-MGVN8V
@@ -19,6 +41,52 @@ spec:
   version: 10.0.8.0
   storageClassName: rook-ceph-block
   portal:
+    name: api-portal
+    version: 10.0.8.0
+    profile: n1xc2.m8
+    mgmtPlatformEndpointCASecret:
+      secretName: ingress-ca
+    mgmtConsumerEndpointCASecret:
+      secretName: ingress-ca
+    mgmtPlatformEndpointSvcCASecret:
+      secretName: api-manager-ca
+    mgmtConsumerEndpointSvcCASecret:
+      secretName: api-manager-ca
+    portalAdminEndpoint:
+      annotations:
+        cert-manager.io/issuer: ingress-issuer
+      hosts:
+        - name: api.portal.apps.o1-773537.cp.fyre.ibm.com
+          secretName: portal-admin
+    portalUIEndpoint:
+      annotations:
+        cert-manager.io/issuer: ingress-issuer
+      hosts:
+        - name: portal.apps.o1-773537.cp.fyre.ibm.com
+          secretName: portal-web
+    databaseVolumeClaimTemplate:
+      storageClassName: rook-ceph-block
+      volumeSize: 15Gi
+    databaseLogsVolumeClaimTemplate:
+      storageClassName: rook-ceph-block
+      volumeSize: 6Gi
+    webVolumeClaimTemplate:
+      storageClassName: rook-ceph-block
+      volumeSize: 8Gi
+    backupVolumeClaimTemplate:
+      storageClassName: rook-ceph-block
+      volumeSize: 15Gi
+    adminVolumeClaimTemplate:
+      storageClassName: rook-ceph-block
+      volumeSize: 6Gi
+    certVolumeClaimTemplate:
+      storageClassName: rook-ceph-block
+      volumeSize: 4Gi
+    adminClientSubjectDN: CN=portal-admin-client,O=cert-manager
+    microServiceSecurity: certManager
+    certManagerIssuer:
+      name: selfsigning-issuer
+      kind: Issuer
     encryptionSecret:
       secretName: ptl-encryption-key
     multiSiteHA:
@@ -32,7 +100,83 @@ spec:
       replicationPeerFQDN: ptl-replication.apps.o1-773539.cp.fyre.ibm.com
       tlsClient:
         secretName: smbc-apic-management-ptl-replication-client  
+  gateway:
+    name: api-gateway
+    version: 10.0.8.0
+    profile: n1xc1.m8
+    mtlsValidateClient: true
+    apicGatewayServiceV5CompatibilityMode: false
+    mgmtPlatformEndpointCASecret:
+      secretName: ingress-ca
+    mgmtPlatformEndpointSvcCASecret:
+      secretName: api-manager-ca
+    gatewayEndpoint:
+      annotations:
+        cert-manager.io/issuer: ingress-issuer
+      hosts:
+        - name: rgw.apps.o1-773537.cp.fyre.ibm.com
+          secretName: gwv6-endpoint
+    gatewayManagerEndpoint:
+      annotations:
+        cert-manager.io/issuer: ingress-issuer
+      hosts:
+        - name: rgwd.apps.o1-773537.cp.fyre.ibm.com
+          secretName: gwv6-manager-endpoint
+    apicGatewayServiceTLS:
+      secretName: gateway-service
+    apicGatewayPeeringTLS:
+      secretName: gateway-peering
+    datapowerLogLevel: 3
+    tokenManagementService:
+      enabled: true
+      storage:
+        storageClassName: rook-ceph-block
+        volumeSize: 30Gi
+    adminUser:
+      secretName: admin-secret
   management:
+    name: api-manager
+    version: 10.0.8.0
+    profile: n1xc2.m16
+    portal:
+      admin:
+        secretName: portal-admin-client
+    analytics:
+      ingestion:
+        secretName: analytics-ingestion-client
+    gateway:
+      client:
+        secretName: gateway-client-client
+    cloudManagerEndpoint:
+      annotations:
+        cert-manager.io/issuer: ingress-issuer
+      hosts:
+        - name: admin.apps.o1-773537.cp.fyre.ibm.com
+          secretName: cm-endpoint
+    apiManagerEndpoint:
+      annotations:
+        cert-manager.io/issuer: ingress-issuer
+      hosts:
+        - name: manager.apps.o1-773537.cp.fyre.ibm.com
+          secretName: apim-endpoint
+    platformAPIEndpoint:
+      annotations:
+        cert-manager.io/issuer: ingress-issuer
+      hosts:
+        - name: api.apps.o1-773537.cp.fyre.ibm.com
+          secretName: api-endpoint
+    consumerAPIEndpoint:
+      annotations:
+        cert-manager.io/issuer: ingress-issuer
+      hosts:
+        - name: consumer.apps.o1-773537.cp.fyre.ibm.com
+          secretName: consumer-endpoint
+    databaseVolumeClaimTemplate:
+      storageClassName: rook-ceph-block
+    microServiceSecurity: certManager
+    certManagerIssuer:
+      name: selfsigning-issuer
+      kind: Issuer
     encryptionSecret:
       secretName: mgmt-encryption-key
     multiSiteHA:
