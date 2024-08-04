@@ -1,0 +1,14 @@
+resources:
+  - sub-platform-navigator.yaml
+  - sub-apic.yaml
+  - sub-datapower.yaml
+  - sub-cert-manager.yaml
+  - sub-foundational.yaml
+  - platform-ui.yaml
+  - api-manager-certs.yaml
+  - api-manager.yaml
+  - api-analytics.yaml
+  - api-portal.yaml
+  - api-gateway-certs.yaml
+  - api-gateway.yaml
+namespace: apic-test

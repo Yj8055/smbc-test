@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: selfsigning-issuer
-  namespace: apic-test
+  namespace: cp4i-apic
   labels: {
     app.kubernetes.io/instance: "api-manager",
     app.kubernetes.io/managed-by: "ibm-apiconnect",
@@ -15,7 +15,7 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: ingress-issuer
-  namespace: apic-test
+  namespace: cp4i-apic
   labels: {
     app.kubernetes.io/instance: "api-manager",
     app.kubernetes.io/managed-by: "ibm-apiconnect",
@@ -29,7 +29,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: ingress-ca
-  namespace: apic-test
+  namespace: cp4i-apic
   labels: {
     app.kubernetes.io/instance: "api-manager",
     app.kubernetes.io/managed-by: "ibm-apiconnect",
@@ -58,7 +58,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: portal-admin-client
-  namespace: apic-test
+  namespace: cp4i-apic
   labels: {
     app.kubernetes.io/instance: "api-manager",
     app.kubernetes.io/managed-by: "ibm-apiconnect",
@@ -88,7 +88,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: gateway-client-client
-  namespace: apic-test
+  namespace: cp4i-apic
   labels: {
     app.kubernetes.io/instance: "api-manager",
     app.kubernetes.io/managed-by: "ibm-apiconnect",
@@ -118,7 +118,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: analytics-ingestion-client
-  namespace: apic-test
+  namespace: cp4i-apic
   labels: {
     app.kubernetes.io/instance: "api-manager",
     app.kubernetes.io/managed-by: "ibm-apiconnect",

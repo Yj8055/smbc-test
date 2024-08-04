@@ -4,7 +4,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: gateway-service
-  namespace: apic-test
+  namespace: cp4i-apic
   labels: {
     app.kubernetes.io/instance: "gatewaycluster",
     app.kubernetes.io/managed-by: "ibm-apiconnect",
@@ -26,7 +26,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: gateway-peering
-  namespace: apic-test
+  namespace: cp4i-apic
   labels: {
     app.kubernetes.io/instance: "gatewaycluster",
     app.kubernetes.io/managed-by: "ibm-apiconnect",
