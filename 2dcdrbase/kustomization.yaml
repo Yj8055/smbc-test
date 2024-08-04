@@ -8,7 +8,8 @@ resources:
   - mgmt-encryption-key-secret.yaml
   - ptl-encryption-key-secret.yaml
   - issuer.yaml
-  - mgmt-tls-client-cert.yaml
+  - self-signed-issuer-cert.yaml
   - ingress-issuer.yaml
+  - mgmt-tls-client-cert.yaml
   - ptl-tls-client-cert.yaml
 namespace: apic-test
