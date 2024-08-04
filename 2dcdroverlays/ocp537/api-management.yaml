@@ -19,9 +19,6 @@ spec:
   version: 10.0.8.0
   storageClassName: rook-ceph-block
   portal:
-    name: api-portal
-    version: 10.0.8.0
-    profile: n1xc2.m8
     encryptionSecret:
       secretName: ptl-encryption-key
     multiSiteHA:
@@ -36,9 +33,6 @@ spec:
       tlsClient:
         secretName: smbc-apic-management-ptl-replication-client  
   management:
-    name: api-manager
-    version: 10.0.8.0
-    profile: n1xc2.m16
     encryptionSecret:
       secretName: mgmt-encryption-key
     multiSiteHA:
