@@ -3,7 +3,9 @@ kind: Subscription
 metadata:
   name: ibm-integration-platform-navigator
   labels:
-    backup.integration.ibm.com/component: subscription        
+    backup.integration.ibm.com/component: subscription  
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"      
 spec:
   channel: v7.3-sc2
   installPlanApproval: Automatic

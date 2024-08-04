@@ -1,0 +1,10 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: smbc-apic-management-ingress-issuer
+  namespace: cp4i-apic
+  annotations:
+    argocd.argoproj.io/sync-wave: "11"
+spec:
+  ca:
+    secretName: smbc-apic-management-ingress-ca

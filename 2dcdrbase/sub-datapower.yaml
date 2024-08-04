@@ -3,7 +3,9 @@ kind: Subscription
 metadata:
   name: datapower-operator
   labels:
-    backup.integration.ibm.com/component: subscription        
+    backup.integration.ibm.com/component: subscription     
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"   
 spec:
   channel: v1.11-sc2
   installPlanApproval: Automatic

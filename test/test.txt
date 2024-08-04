@@ -1,0 +1,5 @@
+cat /dev/urandom | head -c63 | base64 -w0 > mgmt-enc-key.txt
+
+oc create secret generic mgmt-encryption-key --from-file=encryption_secret.bin=mgmt-enc-key.txt -n <management namespace>
+
+cat /dev/urandom | head -c63 | base64 -w0 > ptl-enc-key.txt

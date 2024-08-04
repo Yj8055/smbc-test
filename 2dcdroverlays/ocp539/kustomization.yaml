@@ -4,4 +4,5 @@ namespace: cp4i-apic
 
 resources:
    - ../../2dcdrbase
+   - api-management.yaml
 #patches:

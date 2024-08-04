@@ -4,7 +4,9 @@ metadata:
   name: platformui-apic
   namespace: apic-test
   labels:
-    backup.integration.ibm.com/component: platformnavigator        
+    backup.integration.ibm.com/component: platformnavigator     
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"   
 spec:
   license:
     accept: true

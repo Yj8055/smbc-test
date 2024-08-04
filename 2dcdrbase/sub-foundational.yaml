@@ -3,7 +3,9 @@ kind: Subscription
 metadata:
   name: ibm-common-service-operator
   labels:
-    backup.integration.ibm.com/component: subscription        
+    backup.integration.ibm.com/component: subscription  
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"      
 spec:
   channel: v4.6
   installPlanApproval: Automatic

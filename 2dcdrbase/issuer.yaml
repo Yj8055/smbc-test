@@ -1,0 +1,9 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: smbc-apic-management-self-signed
+  namespace: cp4i-apic
+  annotations:
+    argocd.argoproj.io/sync-wave: "9"
+spec:
+  selfSigned: {}
